@@ -6,8 +6,8 @@
 <body>
 
     <?php
-$nombre = "Juan";
-$edad = 25;
+$nombre = "Joshua";
+$edad = 29;
 
 // Usando echo
 echo "Hola, mundo!<br>";
