@@ -1,0 +1,38 @@
+[
+    {
+        "nombre": "Juan Perez",
+        "id": 1,
+        "salario": 321,
+        "bono": 0
+    },
+    {
+        "nombre": "Elucio Rodriguez",
+        "id": 2,
+        "salario": 456,
+        "bono": 0
+    },
+    {
+        "nombre": "Mikael Santo",
+        "id": 3,
+        "salario": 789,
+        "bono": 0
+    },
+    {
+        "nombre": "Rodrigo Cantablo",
+        "id": 4,
+        "salario": 987,
+        "bono": 0
+    },
+    {
+        "nombre": "Romulo Palacio",
+        "id": 5,
+        "salario": 765,
+        "bono": 0
+    },
+    {
+        "nombre": "John Cena",
+        "id": 6,
+        "salario": 12345,
+        "bono": 456
+    }
+]
