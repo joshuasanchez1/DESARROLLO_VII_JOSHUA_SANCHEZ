@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $datos = [];
 
     // Procesar y validar cada campo
-    $campos = ['nombre', 'email', 'edad', 'sitio_web', 'genero', 'intereses', 'comentarios'];
+    $campos = ['nombre', 'email', 'edad', 'sitio_web', 'genero', 'intereses', 'comentarios', 'FechaNacimiento.com'];
     foreach ($campos as $campo) {
         if (isset($_POST[$campo])) {
             $valor = $_POST[$campo];
@@ -26,10 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errores[] = "La foto de perfil no es válida.";
         } else {
             $rutaDestino = 'uploads/' . basename($_FILES['foto_perfil']['name']);
-            if (move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $rutaDestino)) {
-                $datos['foto_perfil'] = $rutaDestino;
+            if (file_exists($rutaDestino)) {
+                $errores[] = "Archivo ya existe";
             } else {
-                $errores[] = "Hubo un error al subir la foto de perfil.";
+
+                if (move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $rutaDestino)) {
+                    $datos['foto_perfil'] = $rutaDestino;
+                } else {
+                    $errores[] = "Hubo un error al subir la foto de perfil.";
+                }
             }
         }
     }
@@ -55,4 +60,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "Acceso no permitido.";
 }
-?>

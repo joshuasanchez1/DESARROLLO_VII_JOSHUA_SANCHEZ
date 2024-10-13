@@ -4,6 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulario de Registro Avanzado</title>
+    <script>
+        function calculateAge() {
+          const birthDate = document.getElementById("FechaNacimiento").value;
+          if (birthDate) {
+            const birthDateObj = new Date(birthDate);
+            const today = new Date();
+            
+            let age = today.getFullYear() - birthDateObj.getFullYear();
+            const monthDiff = today.getMonth() - birthDateObj.getMonth();
+            const dayDiff = today.getDate() - birthDateObj.getDate();
+  
+            if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+              age--;
+            }
+  
+            document.getElementById("edad").value = age;
+          }
+        }
+        window.onload = function() {
+          document.getElementById("FechaNacimiento").addEventListener("change", calculateAge);
+        };
+      </script>
   </head>
   <body>
     <h2>Formulario de Registro Avanzado</h2>
@@ -13,6 +35,8 @@
 
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required /><br /><br />
+      <label for="FechaNacimiento">Fecha de nacimiento:</label>
+      <input type="date" id="FechaNacimiento" name="FechaNacimiento" required /><br /><br />
 
       <label for="edad">Edad:</label>
       <input type="number" id="edad" name="edad" required /><br /><br />
