@@ -1,0 +1,34 @@
+[
+    {
+        "id": "1",
+        "usuario": "john123",
+        "password": "galletas",
+        "nombre":"John",
+        "apellido":"Smith",
+        "nota": "95"
+    },
+    {
+        "id": "2",
+        "usuario": "jaime",
+        "nombre":"Jaime",
+        "apellido":"Jaramillo",
+        "password": "guerrilla",
+        "nota": "67"
+    },
+    {
+        "id": "3",
+        "usuario": "laura",
+        "nombre":"Laura",
+        "apellido":"Paulina",
+        "password": "maquillaje",
+        "nota": "96"
+    },
+    {
+        "id": "3",
+        "usuario": "la",
+        "nombre":"Andrea",
+        "apellido":"Monica",
+        "password": "pizza",
+        "nota": "96"
+    }
+]
