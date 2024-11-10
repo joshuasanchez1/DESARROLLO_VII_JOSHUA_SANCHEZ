@@ -33,6 +33,7 @@ composer.phar
 *.txt
 *.wpd
 *.wps
+*.json
 
 ### Video ###
 *.3g2
