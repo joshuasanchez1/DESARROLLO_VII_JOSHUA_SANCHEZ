@@ -19,6 +19,5 @@ $_SESSION['usuario'] = [
     'email' => $userinfo->email,
     'nombre' => $userinfo->name
 ];
-header("Location: dashboard.php");  // For example, redirect to the dashboard
+header("Location: dashboard.php");
 exit();
-?>

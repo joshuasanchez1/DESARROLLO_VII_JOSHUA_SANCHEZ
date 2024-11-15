@@ -3,6 +3,7 @@ session_start();
 require __DIR__ . "/oauth_settings.php";
 $client->addScope("email");
 $client->addScope("profile");
+$client->addScope("https://www.googleapis.com/auth/books");
 $url = $client->createAuthUrl();
 ?>
 
@@ -17,6 +18,7 @@ $url = $client->createAuthUrl();
 
 <body>
     <a href="<?= $url ?>">Login con google</a>
+
 </body>
 
 </html>
