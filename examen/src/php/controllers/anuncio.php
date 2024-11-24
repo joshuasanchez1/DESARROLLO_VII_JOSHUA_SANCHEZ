@@ -60,29 +60,36 @@
                     }
                 } else {
                     $redirect = '../../public/index.php?message=error3';
+                    
                 }
             }
         } 
         // Actualizar anuncio (si hay ads_id)
         elseif ($ads_id) {
             // Actualizamos el anuncio
+            $action = $_POST['action'];
+            $titulo = $_POST['ads_titulo_ea'] ?? '';
+            $descripcion = $_POST['ads_descripcion_ea'] ?? '';
+            $categoria_id = $_POST['ads_categoria_ea'] ?? '';
+            $precio = $_POST['ads_precio_ea'] ?? '';
+            $usr_id = $_SESSION['id'];
             $anuncios = new Anuncions($ads_id, $titulo, $descripcion, $precio, $usr_id, $categoria_id);
             if ($anuncios->updateAnuncio()) {
                 // Si se proporciona una nueva imagen, la actualizamos
-                if (isset($_FILES['file'])) {
-                    $file_name = $_FILES['file']['name'];
-                    $file_tmp_name = $_FILES['file']['tmp_name'];
+                if (isset($_FILES['file_ea'])) {
+                    $file_name = $_FILES['file_ea']['name'];
+                    $file_tmp_name = $_FILES['file_ea']['tmp_name'];
                     $file_info = uniqid('ad_image_', true) . '.' . pathinfo($file_name, PATHINFO_EXTENSION);
                     $destinacion_full = $dir_destinacion . $file_info;
                     $relative_path = './tmp_images/' . $file_info;
     
                     $imagenes = new Images_Ad(null, $ads_id, $relative_path);
-                    if ($imagenes->updateImages_ad()) {
-                        if (move_uploaded_file($file_tmp_name, $destinacion_full)) {
+                    if (move_uploaded_file($file_tmp_name, $destinacion_full)) {
+                        if ($imagenes->updateImages_ad()) {
                             $redirect = '../../public/index.php?message=successU1';
                         } else {
-                            $imagenes->deleteImages_ad();
                             $redirect = '../../public/index.php?message=errorU1';
+                            //echo "path: ".$destinacion_full;
                         }
                     } else {
                         $redirect = '../../public/index.php?message=errorU2';
@@ -92,7 +99,15 @@
                 }
             } else {
                 $redirect = '../../public/index.php?message=errorU3';
-            }
+                /* // Mostrar los valores de cada variable
+                echo "Action: " . htmlspecialchars($action) . "<br>";
+                echo "Título: " . htmlspecialchars($titulo) . "<br>";
+                echo "Descripción: " . htmlspecialchars($descripcion) . "<br>";
+                echo "Categoría ID: " . htmlspecialchars($categoria_id) . "<br>";
+                echo "Precio: " . htmlspecialchars($precio) . "<br>";
+                echo "Usuario ID: " . htmlspecialchars($usr_id) . "<br>";
+                echo "Anuncio ID: " . htmlspecialchars($ads_id) . "<br>"; */
+                            }
         }
         }else{
             // Eliminar anuncio (si se pasó el id de anuncio)
