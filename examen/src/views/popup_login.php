@@ -17,6 +17,10 @@
                 <a href='../public/signup.php'  id="singup">SignUp</a>
                 <button type="submit" id="login">Login</button>
             </div>
+            <br>
+            <div class="button-group">
+                <a href='../public/lost.php'  id="lost">Forgot Password</a>
+            </div>
         </form>
     </div>
 </div>

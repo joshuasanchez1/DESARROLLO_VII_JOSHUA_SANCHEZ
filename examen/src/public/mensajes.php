@@ -8,6 +8,28 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $sender_id = $_SESSION['id'];
+    $receiver_id = $_POST['receiver_id'];
+    $message = trim($_POST['message']);
+
+    if ($receiver_id && !empty($message)) {
+        $query = "INSERT INTO messages_usr (msg_sender_id, msg_receiver_id, msg_content) VALUES (:sender_id, :receiver_id, :message)";
+        $stmt = $conn->prepare($query);
+        $stmt->execute([
+            'sender_id' => $sender_id,
+            'receiver_id' => $receiver_id,
+            'message' => $message
+        ]);
+
+        // header("Location: chat.php?user_id=" . $receiver_id);
+        // exit();
+    } else {
+        echo "Por favor selecciona un usuario y escribe un mensaje.";
+    }
+}
+
+
 // ID del usuario logueado
 $current_user = $_SESSION['id'];
 
@@ -89,7 +111,7 @@ if ($chat_user_id) {
                         <p>No hay mensajes aún.</p>
                     <?php endif; ?>
                 </div>
-                <form method="POST" action="enviar_mensaje.php">
+                <form method="POST" action="">
                     <input type="hidden" name="receiver_id" value="<?php echo $chat_user_id; ?>">
                     <textarea name="message" placeholder="Escribe un mensaje..." required></textarea>
                     <button type="submit">Enviar</button>
@@ -97,5 +119,6 @@ if ($chat_user_id) {
             </div>
         <?php endif; ?>
     </div>
+    <script src="../public/JS/chat.js"></script>
 </body>
 </html>

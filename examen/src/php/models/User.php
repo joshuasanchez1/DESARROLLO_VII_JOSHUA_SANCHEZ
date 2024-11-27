@@ -113,6 +113,24 @@ class User
             return [];
         }
     }
+    public function getUserByEmail()
+    {
+        global $conn;
+        $table_name = "users_usr";
+        $email = $this->usr_email;
+
+        $query = "SELECT * FROM $table_name where usr_email = :email";
+        try {
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(":email", $email);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Devuelve todos los resultados como un arreglo asociativo
+        } catch (PDOException $e) {
+            // Manejo de errores
+            error_log("Error en getUserByEmail: " . $e->getMessage());
+            return [];
+        }
+    }
 
     public function eliminar_usuario()
     {

@@ -23,8 +23,10 @@
                 <li><a href="../public/administracion_rol.php">Administracion de Roles</a></li>
                 <li><a href="../public/administracion_usuario.php">Administracion de Usuarios</a></li>
                 <li><a href="../public/administracion_categorias.php">Administracion de Categorias</a></li>
-            <?php else : ?>
-                <li><a href="../public/misAnuncios.php">Mis Anuncios</a></li>
+                <li><a href="../public/mensajes.php">Chat</a></li>
+                <?php else : ?>
+                    <li><a href="../public/misAnuncios.php">Mis Anuncios</a></li>
+                    <li><a href="../public/mensajes.php">Chat</a></li>
             <?php endif ?>
         <li><a href="../views/logout.php">Cerrar Sesión</a></li>
         <?php endif; ?>
